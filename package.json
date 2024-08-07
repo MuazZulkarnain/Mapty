@@ -10,6 +10,7 @@
   "author": "Muaz Zulkarnain",
   "license": "ISC",
   "dependencies": {
+    "leaflet": "^1.9.4",
     "parcel": "^2.12.0"
   }
 }
