@@ -111,8 +111,25 @@ class App {
 
   _showForm(mapE) {
     this.#mapEvent = mapE;
-    form.classList.remove('hidden');
     inputDistance.focus();
+    // form.classList.remove('hidden');
+    form.classList.toggle('form--transition');
+    form.classList.toggle('hidden');
+  }
+
+  _hideForm() {
+    // Empty inputs
+    inputDistance.value =
+      inputDuration.value =
+      inputCadence.value =
+      inputElevation.value =
+        '';
+
+    // form.style.display = 'none';
+    // form.classList.add('hidden');
+    // setTimeout(() => (form.computedStyleMap.display = 'grid'), 1000);
+    form.classList.toggle('form--transition');
+    form.classList.toggle('hidden');
   }
 
   _toggleElevationField() {
@@ -169,11 +186,7 @@ class App {
     // Render workout on list
     this._renderWorkout(workout);
     // Hide form + Clear input fields
-    inputDistance.value =
-      inputDuration.value =
-      inputCadence.value =
-      inputElevation.value =
-        '';
+    this._hideForm();
   }
 
   _renderWorkoutMarker(workout) {
@@ -188,7 +201,9 @@ class App {
           className: `${workout.type}-popup`,
         })
       )
-      .setPopupContent('cycling')
+      .setPopupContent(
+        `${workout.type === 'running' ? '🏃‍♂️' : '🚴🏻'} ${workout.description}`
+      )
       .openPopup();
   }
 
